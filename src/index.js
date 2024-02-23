@@ -3,10 +3,10 @@ const {format} = require('./format')
 const inputValues = {
     firstName: 'Chris',
     lastName: 'Power',
-    address: '810 7th St NE, Washington DC, 20002',
+    phone: '(202) 123-4567',
     projectName: 'Chris Power | 810 7th St NE, Washington DC, 20002',
     email: 'chris@prismsolarpower.com',
-    state: 'Washington DC',
+    state: 'DC',
     ahj: 'Washington DC',
     agreementStatus: 'signed'
 }

@@ -1,12 +1,12 @@
-const {format, states, ahj, agreementStatus, fieldTemplateIDS} = require('../src/format')
+const {format, stateMap, ahjMap, agreementStatusMap, fieldTemplateIDS} = require('../src/format')
 
 const inputValues = {
     firstName: 'Chris',
     lastName: 'Power',
-    address: '810 7th St NE, Washington DC, 20002',
+    phone: '(202) 123-4567',
     projectName: 'Chris Power | 810 7th St NE, Washington DC, 20002',
-    email: 'chris@prismsolarpower.com',
-    state: 'Washington DC',
+    email: 'cpower77@gmail.com',
+    state: 'DC',
     ahj: 'Washington DC',
     agreementStatus: 'signed'
 }
@@ -36,31 +36,31 @@ describe(`\nEnd to end testing ==>`, () => {
 })
 
 describe(`\nMapping for 'States' ==>`, () => {
-    for (const key in states) {
-        test(`The state of ${key} is being mapped according to the 'states' mapping object`, () => {
+    for (const key in stateMap) {
+        test(`The state of ${key} is being mapped according to the 'stateMap' mapping object`, () => {
             const stateChanged = {...inputValues, state: key}
             const result = format(stateChanged)
-            expect(result[fieldTemplateIDS.State]).toBe(states[key])
+            expect(result[fieldTemplateIDS.State]).toBe(stateMap[key])
         })
     }
 })
 
 describe(`\nMapping for 'ahj' ==>`, () => {
-    for (const key in ahj) {
-        test(`The key ${key} is being mapped according to the 'ahj' mapping object`, () => {
+    for (const key in ahjMap) {
+        test(`The key ${key} is being mapped according to the 'ahjMap' mapping object`, () => {
             const ahjChanged = {...inputValues, ahj: key}
             const result = format(ahjChanged)
-            expect(result[fieldTemplateIDS['Authority Having Jurisdiction']]).toBe(ahj[key])
+            expect(result[fieldTemplateIDS['Authority Having Jurisdiction']]).toBe(ahjMap[key])
         })
     }
 })
 
 describe(`\nMapping for 'agreementStatus' ==>`, () => {
-    for (const key in agreementStatus) {
-        test(`The key ${key} is being mapped according to the 'agreementStatus' mapping object`, () => {
+    for (const key in agreementStatusMap) {
+        test(`The key ${key} is being mapped according to the 'agreementStatusMap' mapping object`, () => {
             const agreementStatusChanged = {...inputValues, agreementStatus: key}
             const result = format(agreementStatusChanged)
-            expect(result[fieldTemplateIDS['Agreement Status']]).toBe(agreementStatus[key])
+            expect(result[fieldTemplateIDS['Agreement Status']]).toBe(agreementStatusMap[key])
         })
     }
 })
