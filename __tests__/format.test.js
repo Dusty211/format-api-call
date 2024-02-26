@@ -31,7 +31,8 @@ describe(`\nEnd to end testing ==>`, () => {
     })
 
     test(`Result of format(inputValues) === outputValue`, () => {
-        expect(format(inputValues)).toEqual(outputValue)
+        const result = JSON.parse(format(inputValues))
+        expect(result).toEqual(outputValue)
     })
 })
 
@@ -39,7 +40,7 @@ describe(`\nMapping for 'States' ==>`, () => {
     for (const key in stateMap) {
         test(`The state of ${key} is being mapped according to the 'stateMap' mapping object`, () => {
             const stateChanged = {...inputValues, state: key}
-            const result = format(stateChanged)
+            const result = JSON.parse(format(stateChanged))
             expect(result[fieldTemplateIDS.State]).toBe(stateMap[key])
         })
     }
@@ -49,7 +50,7 @@ describe(`\nMapping for 'ahj' ==>`, () => {
     for (const key in ahjMap) {
         test(`The key ${key} is being mapped according to the 'ahjMap' mapping object`, () => {
             const ahjChanged = {...inputValues, ahj: key}
-            const result = format(ahjChanged)
+            const result = JSON.parse(format(ahjChanged))
             expect(result[fieldTemplateIDS['Authority Having Jurisdiction']]).toBe(ahjMap[key])
         })
     }
@@ -59,7 +60,7 @@ describe(`\nMapping for 'agreementStatus' ==>`, () => {
     for (const key in agreementStatusMap) {
         test(`The key ${key} is being mapped according to the 'agreementStatusMap' mapping object`, () => {
             const agreementStatusChanged = {...inputValues, agreementStatus: key}
-            const result = format(agreementStatusChanged)
+            const result = JSON.parse(format(agreementStatusChanged))
             expect(result[fieldTemplateIDS['Agreement Status']]).toBe(agreementStatusMap[key])
         })
     }
@@ -68,7 +69,7 @@ describe(`\nMapping for 'agreementStatus' ==>`, () => {
 describe(`\nResult's keys are changed to correct 'fieldTemplateIDS' ==>`, () => {
     for (const key in fieldTemplateIDS) {
         test(`The field template ID for ${key} is being used properly`, () => {
-            const result = format(inputValues)
+            const result = JSON.parse(format(inputValues))
             expect(Object.keys(result).includes(fieldTemplateIDS[key])).toBe(true)
         })
     }

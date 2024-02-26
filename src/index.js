@@ -5,7 +5,7 @@ const inputValues = {
     lastName: 'Power',
     phone: '(202) 123-4567',
     projectName: 'Chris Power | 810 7th St NE, Washington DC, 20002',
-    email: 'chris@prismsolarpower.com',
+    email: 'cpower77@gmail.com',
     state: 'DC',
     ahj: 'Washington DC',
     agreementStatus: 'signed'

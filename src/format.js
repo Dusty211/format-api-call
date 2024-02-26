@@ -91,7 +91,14 @@ function format({firstName, lastName, phone, projectName, email, state, ahj, agr
     result[fieldTemplateIDS['State']] = stateMap[state]
     result[fieldTemplateIDS['Authority Having Jurisdiction']] = ahjMap[ahj]
     result[fieldTemplateIDS['Agreement Status']] = agreementStatusMap[agreementStatus]
-    return result
+    return JSON.stringify(result)
+}
+
+if (require.main === module) {
+    //Called directly
+    format(args)
+} else {
+    //Called as a module
 }
 
 module.exports = {
