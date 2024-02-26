@@ -96,7 +96,7 @@ function format({firstName, lastName, phone, projectName, email, state, ahj, agr
 
 if (require.main === module) {
     //Called directly
-    format(args)
+    format(zeroCodeArgs)
 } else {
     //Called as a module
 }
