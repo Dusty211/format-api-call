@@ -51,13 +51,13 @@ const stateMap = {
     WV: '5d50b7e5-b2bf-43f3-9a6c-46d9d430d1e9',
     WI: '801a0bc0-a365-4690-ab76-6a8f15ace4dd',
     WY: '55eded6e-97ce-45a4-8143-079d08ca1cc0'
-}
+};
 
 const ahjMap = {
     'Washington DC': '43779b7c-bfff-4e73-92f1-5d7c91d3bb85',
     "Prince George's County": '42eaf674-d4eb-4e03-88a7-bfad8ccdc7d8',
     'Montgomery County': '5456e0ed-2e19-4605-a21f-160992fd0f38'
-}
+};
 
 // The names here might not match the case of the values coming from Aurora
 const agreementStatusMap = {
@@ -68,7 +68,7 @@ const agreementStatusMap = {
     canceled: 'e8231af1-dd38-45b8-882d-25eea9e97ced',
     error: '36652f1b-c966-4fdc-9957-594533cd9976',
     declined: 'd22855ce-e3d4-4a54-ba11-017b656d659a'
-}
+};
 
 const fieldTemplateIDS = {
     'Project Name': '958a51d7-437d-4a56-b15e-ab3c018fa713',
@@ -79,26 +79,24 @@ const fieldTemplateIDS = {
     State: '904929a4-ffe6-4b35-99ac-08f5671bf5dd',
     'Authority Having Jurisdiction': 'b1733243-558c-49de-bae2-8669733cbd06',
     'Agreement Status': '2b7ff4eb-2b42-4b9e-89c4-4edabb650a2c'
-}
+};
 
 function format({firstName, lastName, phone, projectName, email, state, ahj, agreementStatus}) {
-    const result = {}
-    result[fieldTemplateIDS['First Name']] = firstName
-    result[fieldTemplateIDS['Last Name']] = lastName
-    result[fieldTemplateIDS['Key Contact Phone']] = phone
-    result[fieldTemplateIDS['Project Name']] = projectName
-    result[fieldTemplateIDS['Key Contact Email Address']] = email
-    result[fieldTemplateIDS['State']] = stateMap[state]
-    result[fieldTemplateIDS['Authority Having Jurisdiction']] = ahjMap[ahj]
-    result[fieldTemplateIDS['Agreement Status']] = agreementStatusMap[agreementStatus]
-    return JSON.stringify(result)
+    const result = {};
+    result[fieldTemplateIDS['First Name']] = firstName;
+    result[fieldTemplateIDS['Last Name']] = lastName;
+    result[fieldTemplateIDS['Key Contact Phone']] = phone;
+    result[fieldTemplateIDS['Project Name']] = projectName;
+    result[fieldTemplateIDS['Key Contact Email Address']] = email;
+    result[fieldTemplateIDS['State']] = stateMap[state];
+    result[fieldTemplateIDS['Authority Having Jurisdiction']] = ahjMap[ahj];
+    result[fieldTemplateIDS['Agreement Status']] = agreementStatusMap[agreementStatus];
+    return {data: JSON.stringify(result)};
 }
 
 if (require.main === module) {
-    //Called directly
-    format(zeroCodeArgs)
-} else {
-    //Called as a module
+    const zeroCodeArgs = {firstName:'Chris', lastName:'Power', phone:'(202) 123-4567', projectName:'Chris Power | 810 7th St NE, Washington DC, 20002', email:'cpower77@gmail.com', state:'DC', ahj:'Washington DC', agreementStatus:'signed'};
+    result = format(zeroCodeArgs);
 }
 
 module.exports = {
@@ -107,18 +105,4 @@ module.exports = {
     ahjMap,
     agreementStatusMap,
     fieldTemplateIDS
-}
-
-// Example output:
-// const outputValue = {
-//     // These contain the actual input values
-//     "958a51d7-437d-4a56-b15e-ab3c018fa713": "Chris Power | 810 7th St NE, Washington DC, 20002",
-//     "9005f66a-aede-4ede-93d5-2bb77262ed7c": "Chris",
-//     "058d2672-d1c1-41f4-89f0-0d9fd591bc89": "Power",
-//     "9aba061e-5362-4c25-ae58-2036edefcfc9": "cpower77@gmail.com",
-//     "acb01ae5-78c3-4d4a-8da3-bfd8fee25c13": "(202) 123-4567",
-//     // These contain the id associated with the input value in the dropdown options
-//     "904929a4-ffe6-4b35-99ac-08f5671bf5dd": "ea94fcbf-4c5e-45ca-be51-b946f4180ac6",
-//     "b1733243-558c-49de-bae2-8669733cbd06": "43779b7c-bfff-4e73-92f1-5d7c91d3bb85",
-//     "2b7ff4eb-2b42-4b9e-89c4-4edabb650a2c": "8ddb20f2-b77e-4ea0-bddc-087800830851"
-// }
+};
